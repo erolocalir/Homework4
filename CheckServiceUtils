@@ -1,0 +1,19 @@
+package homework4;
+
+public class CheckServiceUtils {
+	
+	
+	
+	public static Result runCheckServices(Result[] customerCheckServices) {
+		
+		for (Result customerCheckService : customerCheckServices) {
+			
+			if(!customerCheckService.isSuccess()) {
+				
+				return customerCheckService;
+			}
+		}
+		return new homework4.Result(true);
+	}
+
+}

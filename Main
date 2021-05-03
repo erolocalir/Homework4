@@ -1,0 +1,67 @@
+package homework4;
+
+
+import java.rmi.RemoteException;
+import java.util.GregorianCalendar;
+
+import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
+
+
+public class Main {
+
+	public static void main(String[] args) throws RemoteException {
+		
+		
+		    KPSPublicSoapProxy kpspublic = new KPSPublicSoapProxy();
+			
+			boolean result = kpspublic.TCKimlikNoDogrula(
+					
+					Long.parseLong("1*********0"),
+					"EROL",
+					"ÖCALIr",
+					 2004
+				);
+			
+			System.out.println("doğrulama "+ (result ? "başarılı: STARBUCKS kahve eklendi " : "başarısız: Lütfen bilgilerinizi kontrol edin"));
+			
+			
+			
+			
+
+			
+		
+		
+		    Customer customer = new Customer();
+			
+            customer.setId(1);
+			
+			customer.setIdentityNumber("1*********0");
+			
+			customer.setFirstName("Erol");
+			
+			customer.setLastName("Öcalır");
+			
+			customer.setBirthDate(new GregorianCalendar(2004, 01 , 30).getTime());
+			
+			
+		
+		
+
+		
+			 CustomerCheckService customerCheckService = new StarbucksCustomerCheckManager(new MernisServiceAdapter());
+		
+		
+		
+	     	CustomerService customerService = new StarbucksCustomerManager(customerCheckService);
+		
+		    customerService.add(customer);
+		
+	
+		    
+	
+	}
+		
+		
+	}
+
+

@@ -1,0 +1,60 @@
+package homework4;
+
+import java.rmi.RemoteException;
+
+import java.time.ZoneId;
+
+import homework4.CustomerCheckManager;
+
+import homework4.Customer;
+
+import homework4.RealPersonService;
+
+import homework4.Result;
+
+import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
+
+
+
+
+
+public class MernisServiceAdapter implements RealPersonService {
+	
+	
+	public Result CheckIfRealPerson(Customer customer) {
+		
+		KPSPublicSoapProxy kpsPublicSoapProxy = new KPSPublicSoapProxy();
+		
+		boolean result = true;
+		
+		try {
+			result = kpsPublicSoapProxy.TCKimlikNoDogrula(
+					
+					Long.parseLong(customer.getIdentityNumber()),
+					
+					customer.getFirstName().toUpperCase(),
+					
+					customer.getLastName().toUpperCase(), 
+					
+					customer.getBirthDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear()
+					
+					);
+			
+		} catch (RemoteException e) {
+			
+		
+			e.printStackTrace();
+		}
+		
+		if(result) {
+			
+			return new homework4.Result(true);
+			
+		}else {
+			
+			return new homework4.Result(false, "kimlik doğrulama başarısız.");
+		}
+			
+	}
+
+}

@@ -1,0 +1,14 @@
+package homework4;
+
+public abstract class CustomerCheckManager implements CustomerCheckService {
+	
+	@Override
+	public Result CheckIfRealPerson(Customer customer) {
+		
+		return new homework4.Result(true);
+	}
+
+	
+
+}
+

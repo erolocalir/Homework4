@@ -1,0 +1,13 @@
+package homework4;
+
+public abstract class CustomerManager implements CustomerService{
+	
+	@Override
+	public void add(Customer customer) {
+		
+		System.out.println("İşlem başarılı : ");
+		
+		System.out.println("NERO kahve eklendi.");
+	}
+
+}
